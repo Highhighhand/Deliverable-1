@@ -1,0 +1,65 @@
+---
+title: "High-hand group Deliverable 1"
+output:
+  html_document:
+    df_print: paged
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+rm(list = ls())
+
+library(rio)
+library(ggplot2)
+library(DescTools)
+
+Link = "https://github.com/Highhighhand/Deliverable-1/raw/main/LifeExpect_birth.xlsx"
+cia = import(Link)
+
+```
+First of all, we insert the data into R studio. We choose the Life expect data. And we want to make a histogram plot to visualize the life expectancy. 
+```
+```{r}
+WIDTH=1
+
+base= ggplot(cia)  
+h1= base + geom_histogram(aes(x = value),
+                          binwidth = WIDTH,
+                          fill='grey') 
+h1=h1 + labs(y="Count") + labs(x="Life Expectancy")
+h1
+```
+
+```{r}
+mn=Mean(cia$value,na.rm = T)
+sk=Skew(cia$value,
+     na.rm = T)
+
+annMean=paste0('Mean:',round(mn))
+annSk=paste0('Skewness:',round(sk,2))
+
+h2 = h1+ geom_vline(xintercept = mn,color='red') + 
+    annotate(geom = 'text',color='red',
+             label=annMean,
+              y = 15,
+              x=mn-3,
+              angle=90) + 
+    annotate(geom = 'text', color='blue',
+             label=annSk,
+              y = 5,
+              x= 88,
+              angle=0)
+
+h2
+```
+
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
