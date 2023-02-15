@@ -20,6 +20,7 @@ Link = "https://github.com/Highhighhand/Deliverable-1/raw/main/LifeExpect_birth.
 cia = import(Link)
 
 ```
+
 First of all, we insert the data into R studio. We choose the Life expect data. And we want to make a histogram plot to visualize the life expectancy. 
 ```
 ```{r}
@@ -32,6 +33,7 @@ h1= base + geom_histogram(aes(x = value),
 h1=h1 + labs(y="Count") + labs(x="Life Expectancy")
 h1
 ```
+
 In second step, we build the base plot to count the each life expectancy value.
 
 ```{r}
@@ -52,16 +54,13 @@ h2 = h1+ geom_vline(xintercept = mn,color='red') +
              label=annSk,
               y = 5,
               x= 88,
-              angle=0)
+              angle=0) +
+    labs(title="What is the life expectancy in the world",
+          caption = "Resource: Worldometer data")
 
 h2
 ```
+
 Then we calculate the mean value and skewness of the count. And we put the line of mean and skewness in the plot to annotate the whole chart.
 
 ```
-
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
-
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
-
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
